@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f4f4f4;
+  background-color: #5d576b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,8 @@ body {
 .container {
   max-width: 500px;
   padding: 20px;
-  background: rgb(83, 46, 46);
+  background: #d496a7;
+  color: #f1dede;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -30,7 +31,12 @@ select, input, button {
   font-size: 16px;
   padding: 10px;
   margin: 10px;
+  background-color: #f1dede; /* Light peach color (Change as needed) */
+  color: #333; /* Dark text color */
+  border: 2px solid #8b5e3b;
+  border-radius: 10px;
 }
+
 
 .correct {
   color: green;

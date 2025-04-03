@@ -31,7 +31,7 @@ const InputBox = ({ targetCountry }) => {
     setDisplayWord(newDisplay);
 
     if (correct === targetCountry.length) {
-      setMessage("🎉 You guessed it right!");
+      setMessage("Congrats! You guessed it right!");
     } else {
       setAttempts(attempts - 1);
       setMessage(attempts > 1 ? `Attempts left: ${attempts - 1}` : "❌ Game Over!");
