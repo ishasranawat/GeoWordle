@@ -43,7 +43,7 @@ const InputBox = ({ targetCountry }) => {
       <h3 dangerouslySetInnerHTML={{ __html: displayWord }}></h3>
       {attempts > 0 && (
         <>
-          <input type="text" value={guess} onChange={handleInputChange} />
+          <input type="text" placeholder="type here" value={guess} onChange={handleInputChange} />
           <button onClick={checkGuess}>Submit</button>
         </>
       )}

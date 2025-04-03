@@ -1,22 +1,32 @@
+/* Animated Background */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #5d576b;
+  background-color: #2b2d42;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;  /* Full viewport height */
+  height: 100vh;
   margin: 0;
 }
 
-/* Centered container */
+/* Glassmorphism Effect */
 .container {
   max-width: 500px;
-  padding: 20px;
-  background: #d496a7;
-  color: #f1dede;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  padding: 25px;
+  background: #97aed6;  /* Your color with slight transparency */
+  color: #fffcf9;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Center the title and guessing section */
@@ -27,23 +37,64 @@ body {
   justify-content: center;
 }
 
+/* Inputs & Buttons */
 select, input, button {
   font-size: 16px;
   padding: 10px;
   margin: 10px;
-  background-color: #f1dede; /* Light peach color (Change as needed) */
-  color: #333; /* Dark text color */
-  border: 2px solid #8b5e3b;
+  background-color: #f1dede;  /* Light peach color */
+  color: #333;  /* Dark text */
+  border: 2px solid #ede7e3;
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
+/* Submit Button Effects */
+button {
+  background-color: #0c272c;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background-color: #081214;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Word Flip Animation */
+@keyframes flip {
+  0% { transform: rotateY(0); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0); }
+}
 
 .correct {
-  color: green;
+  color: #129978;
   font-weight: bold;
+  font-size: 18px;
+  animation: flip 0.5s ease-in-out;
+}
+
+/* Shake Animation for Wrong Guess */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
 }
 
 .wrong {
-  color: red;
+  color: #e23b4e;
   font-weight: bold;
+  font-size: 18px;
+  animation: shake 0.3s ease-in-out;
 }
+
+
