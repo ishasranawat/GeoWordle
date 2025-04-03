@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 const InputBox = ({ targetCountry }) => {
-  const [guess, setGuess] = useState(""); // Stores user input
-  const [attempts, setAttempts] = useState(5); // Remaining attempts
-  const [message, setMessage] = useState(""); // Feedback message
-  const [displayWord, setDisplayWord] = useState("_ ".repeat(targetCountry.length)); // Hidden country name
+  const [guess, setGuess] = useState("");
+  const [attempts, setAttempts] = useState(5);
+  const [message, setMessage] = useState("");
+  const [displayWord, setDisplayWord] = useState("_ ".repeat(targetCountry.length));
+  const [gameOver, setGameOver] = useState(false);
 
   const handleInputChange = (e) => {
     setGuess(e.target.value.toUpperCase());
@@ -21,29 +22,35 @@ const InputBox = ({ targetCountry }) => {
 
     for (let i = 0; i < targetCountry.length; i++) {
       if (guess[i] === targetCountry[i]) {
-        newDisplay += `<span class="correct">${guess[i]}</span> `;
+        newDisplay += `<span class='correct'>${guess[i]}</span> `;
         correct++;
       } else {
-        newDisplay += `<span class="wrong">${guess[i]}</span> `;
+        newDisplay += `<span class='wrong'>${guess[i]}</span> `;
       }
     }
 
     setDisplayWord(newDisplay);
 
     if (correct === targetCountry.length) {
-      setMessage("Congrats! You guessed it right!");
+      setMessage("🎉 Congrats! You guessed it right!");
+      setGameOver(true);
     } else {
       setAttempts(attempts - 1);
-      setMessage(attempts > 1 ? `Attempts left: ${attempts - 1}` : "❌ Game Over!");
+      if (attempts - 1 === 0) {
+        setMessage(`❌ Game Over! The country was: ${targetCountry}`);
+        setGameOver(true);
+      } else {
+        setMessage(`Attempts left: ${attempts - 1}`);
+      }
     }
   };
 
   return (
     <div>
       <h3 dangerouslySetInnerHTML={{ __html: displayWord }}></h3>
-      {attempts > 0 && (
+      {!gameOver && (
         <>
-          <input type="text" placeholder="type here" value={guess} onChange={handleInputChange} />
+          <input type="text" placeholder="Type here" value={guess} onChange={handleInputChange} />
           <button onClick={checkGuess}>Submit</button>
         </>
       )}
